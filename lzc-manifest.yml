@@ -1,0 +1,32 @@
+application:
+  subdomain: hivisionidphotos
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://hivision:7860/
+  injects:
+    - id: open-save-chooser
+      on: browser
+      when:
+        - /*
+      do:
+        - src: file:///lzcapp/pkg/content/lazycat-injects/lzc-file-chooser-inject.js
+
+services:
+  hivision:
+    # upstream: docker.io/linzeyi/hivision_idphotos:v1.3.1
+    image: docker.1ms.run/linzeyi/hivision_idphotos:v1.3.1
+    command: python3 -u app.py --host 0.0.0.0 --port 7860
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1:7860/ >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+usage: |
+  HivisionIDPhotos 是 AI 证件照工具：上传照片自动抠图、换背景色、生成各规格尺寸
+  （一寸/二寸/签证/考试等模板）。生成的照片通过页面下载，文件选择器已接入懒猫网盘。
+  首次加载模型稍慢，请耐心等待。

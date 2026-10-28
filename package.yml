@@ -1,0 +1,18 @@
+package: community.lazycat.app.hivisionidphotos
+version: 1.3.1
+name: HivisionIDPhotos
+description: Lightweight AI ID photo generator with matting, size templates and background replacement
+min_os_version: "1.5.0"
+homepage: https://github.com/Zeyi-Lin/HivisionIDPhotos
+author: Zeyi-Lin
+license: Apache-2.0
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: HivisionIDPhotos
+    description: 轻量级 AI 证件照制作工具：抠图、换底、多规格尺寸模板
+  en:
+    name: HivisionIDPhotos
+    description: Lightweight AI ID photo generator with matting, size templates and background replacement
